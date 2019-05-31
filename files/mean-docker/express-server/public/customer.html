@@ -10,8 +10,8 @@
 	<title>Cloud Bank</title>
 
 	<!-- SCROLLS -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 	<style>
 		html 					{ overflow-y:scroll; }
 		body 					{ padding-top:50px; }
@@ -19,7 +19,7 @@
 	</style>
 
 	<!-- SPELLS -->
-	<script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
+	<script src="https://cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
 
 	<script src="js/customer.js"></script><!--加载cutomer.js处理mainCustomer-->
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
@@ -28,6 +28,21 @@
 </head>
 <!-- SET THE CONTROLLER -->
 <body ng-controller="mainCustomer">
+		<div id="header" style="background-color:rgb(239, 239, 239); height: 20px; width: 1140px; text-align: left; margin-left: 190px" >
+				<ul>
+					<ur>首页</ur>
+					<ur>----></ur>
+					<ur>校园银行</ur>
+					<ur>----></ur>
+					<ur>企业银行</ur>
+					<ur>----></ur>
+					<ur>个人理财</ur>
+					<ur>----></ur>
+					<input style="text-align:left" type="search" placeholder="Search..." ></input>
+				</ul>
+				
+		</div>
+		<br>
 	<div class="container box">
 
 		<!-- HEADER AND TODO COUNT -->
