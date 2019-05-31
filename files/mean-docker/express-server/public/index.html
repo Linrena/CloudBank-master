@@ -1,0 +1,91 @@
+<!doctype html>
+<!--主页，欢迎用户，创建新账号-->
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="meanTodo">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Cloud Bank</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#customer-list 				{ margin-bottom:30px; }
+		#customer-form 	 			{ margin-bottom:50px; }
+	</style>
+	<style type="text/css">
+		.box {
+		width: 700px;
+		height: 350px;
+		margin: 0 auto;
+		background: url(http://img0.imgtn.bdimg.com/it/u=302895674,103930042&fm=26&gp=0.jpg) no-repeat center;
+		}
+		</style>
+	<!-- SPELLS -->
+	<script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
+
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainController">
+	<div class="container box">
+
+		<!-- HEADER AND TODO COUNT -->
+		<div class="jumbotron text-center">
+			<h1>Welcome to Cloud Bank</h1>
+			<!--h2>Now we have <span class="label label-info">{{ todos.length }}</span> customers</h2-->
+		</div>
+
+		<!-- TODO LIST -->
+		<!--<div id="customer-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				
+				<div class="checkbox" ng-repeat="todo in todos">
+					<label>
+						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.value }}
+					</label>
+				</div>
+
+				
+
+			</div>
+		</div>
+		-->
+
+		<!-- FORM TO CREATE Customers -->
+		<div id="create-form" class="row">
+			<div class="text-center">
+				<form>
+					<div class="form-group">
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="account" class="form-control " placeholder="Account" ng-model="formData.username">
+						<br>
+						<input type="password" class="form-control " placeholder="Password" ng-model="formData.passwd">
+					</div>
+					<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x"></span>
+					</p>
+					<!-- createToDo() WILL CREATE NEW TODOS -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="newAccount()">Create</button>
+				</form>
+				<br>
+				<a href="login.html" target="_self">已有帐号，登录</a>
+			</div>
+		</div>
+		<div>
+			<a href="aboutUs.html">关于我们</a>
+			<a href="joinCloudBank.html">加入我们</a>
+		</div>
+
+	</div>
+</body>
+</html>

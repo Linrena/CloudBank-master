@@ -1,0 +1,66 @@
+<!doctype html>
+
+<!--已有账号登录 -->
+<html ng-app="meanTodo">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Cloud Bank Login</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+		#customer-list 				{ margin-bottom:30px; }
+		#customer-form 	 			{ margin-bottom:50px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
+
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainController">
+	<div class="container">
+
+		<!-- HEADER AND TODO COUNT -->
+		<div class="jumbotron text-center">
+			<h1>Login a bank account now</h1>
+			<h2>Now we already have <span class="label label-info">{{ todos.length }}</span> customers</h2>
+		</div>
+
+
+
+		<!-- 验证用户信息，如果之前用户已经注册才可以成功跳转到customer.html -->
+		<div id="login-form" class="row">
+			<div class=" text-center">
+				<form>
+					
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+					Account :<input type="text" class="form-control"      ng-model="formData.username">
+					<br>
+					Password:<input type="password" class="form-control"  ng-model="formData.passwd">
+					
+					<!-- createToDo() WILL CREATE NEW TODOS -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="login_click()">Login</button>
+				</form>
+                <!--a href="customer.html" target="_self">在数据库中确认了帐号后登录（此处为后门，可以跳转到用户操作页面）</a-->
+			</div>
+			<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x"></span>
+			</p>
+		</div>
+	</div>
+	<script>
+	
+	</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<!--用户业务-->
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="meanTodo">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Cloud Bank</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		html 					{ overflow-y:scroll; }
+		body 					{ padding-top:50px; }
+
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
+
+	<script src="js/customer.js"></script><!--加载cutomer.js处理mainCustomer-->
+	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainCustomer">
+	<div class="container box">
+
+		<!-- HEADER AND TODO COUNT -->
+		<div id = "customer-list" class="jumbotron text-center">
+			<h1>Hello! Customer {{account.username}}</h1>
+			<h2>Now your account have <span class="label label-info">${{ account.balance }}</span></h2>
+		</div>
+        <div class="save-restore" class="jumbotron text-center">
+			<div class="form-group">
+				<!-- 输入存取金额 -->
+				<input type="number" class="form-control " placeholder="金额" ng-model="formData.amount">
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">存储</button>
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">取出</button>
+			</div>
+        </div>
+        <div class="transform" class="jumbotron text-center">
+            <div class="form-group">
+				<!-- 输入转账金额 -->
+				<input type="number" class="form-control " placeholder="转账金额" ng-model="formData.Tamount">
+                <input type="text" class="form-control " placeholder="转账用户" ng-model="formData.object">
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="transaction()">转账</button>
+			</div>
+        </div>
+        <div class="transform" class="jumbotron text-center">
+            <a href="index.html" target="_self">
+				<button type="submit" class="btn btn-primary btn-lg">退出</button>
+			</a>
+        </div>
+	</div>
+
+</body>
+</html>
