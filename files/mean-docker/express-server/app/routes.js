@@ -5,6 +5,18 @@ Banking.create({
 				balance: 888888
 				//done: false
 			});	
+Banking.create({
+			username: 'root1',
+			passwd: 'root1',
+			balance: 8888
+			//done: false
+			});	
+			Banking.create({
+				username: 'root2',
+				passwd: 'root2',
+				balance: 888888
+				//done: false
+			});	
 
 function VerifyAccount(res,User,Pass) {
     Banking.findOne({username:User,passwd:Pass},function (err, Account) {
