@@ -44,14 +44,16 @@
 			<div class=" text-center">
 				<form>
 					
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-					Account :<input type="text" class="form-control"      ng-model="formData.username">
-					<br>
-					Password:<input type="password" class="form-control"  ng-model="formData.passwd">
-					
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="login_click()">Login</button>
-				</form>
+					<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+				<input type="account" class="form-control"     placeholder="Account..." ng-model="formData.account">
+				<br>
+				<input type="password" class="form-control" placeholder="Password..." ng-model="formData.password">
+				
+				<!-- createToDo() WILL CREATE NEW TODOS -->
+				<br>
+				<a href="customer.html"><button type="submit" class="btn" ng-click="login_click()">Login</button></a>
+			</form>
+			<br>
                 <!--a href="customer.html" target="_self">在数据库中确认了帐号后登录（此处为后门，可以跳转到用户操作页面）</a-->
 			</div>
 			<p class="text-center" ng-show="loading">
@@ -59,8 +61,31 @@
 			</p>
 		</div>
 	</div>
-	<script>
-	
-	</script>
+	<div id="footer" class='text-center text-muted'>
+		<br>
+		<br>
+		<P>
+			<a href="aboutUs.html" target="_blank">关于我们</a>
+			<a href="joinCloudBank.html">加入我们</a>
+		</P>
+</div>
+<div  class='text-center text-muted'>
+			<br>
+			<br>
+			<P>
+				copyright @ 2019-forever  Cloud Bank
+			</P>
+</div>
+<style type="text/css">
+	body{
+		background-size: cover;
+		background-image: url(https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1363423391,806294831&fm=26&gp=0.jpg);
+	}
+	footer {
+		clear: both;
+		line-height: 24px;
+
+	}	
+</style>
 </body>
 </html>
