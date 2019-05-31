@@ -69,6 +69,18 @@ module.exports = function (app) {
 		if(err)
 		res.send(err);
 	});
+	app.get('/api/Accounts', function (req, res) {
+        if(!req.signedCookies.user)
+			res.status(400).send('Please login first!');
+		else{
+			Banking.find({},'username balance',
+			function(err, user)
+			{
+				if(err)
+					res.send(err);
+				else res.status(200).jsonp(user);
+			});}
+		});
 	
 	 app.get('/api/Account', function (req, res) {
         if(!req.signedCookies.user)

@@ -21,6 +21,9 @@ angular.module('todoService', [])
 			},
 			login: function(acc) {
 				return $http.post('api/login', acc);
+			},
+			getAccounts : function() {
+				return $http.get('api/Accounts');
 			}
 			// delete : function(id) {
 				// return $http.delete('/api/todos/' + id);
