@@ -1,13 +1,14 @@
 # CloudBank APP
 
 ##项目简介
+
 云计算，这种创新的计算资源使用方式以及基于互联网标准的连接方式，使得传统商业银行可以利用云计算运作业务，以一种更便捷、灵活的方式将各方聚合，并按需分享，实现更高效、紧密的多方协同。而基于云计算技术的云业务模式，则可以通过资源聚合、共享和重新分配，实现资源的按需索取，其中资源包括业务处理能力、信息甚至实物资源等。
 
 LinuxOne 将 Linux 与开放源码结合而成的“巨无霸”级服务器，专为应用经济打造。IBM 公司通过将企业级 Linux 和开放源码的精华结合起来，将 LinuxONE 打造成为最高效、最强大和最安全的 Linux 平台服务器。
 
 我们的云银行APP运行于 LinuxOne 服务器，以上课时学习的[ICp-banking-microservices](https://github.com/IBM/Cloud-Native-Workloads-on-LinuxONE)为基础，进行了改进，添加了转账等功能。
 
------
+---
 
 ##部署流程
 
@@ -20,7 +21,8 @@ LinuxOne 将 Linux 与开放源码结合而成的“巨无霸”级服务器，�
 
 ### **1. 安装 Docker**
 
---------------
+---
+
     ```
     linux1@myserver ~]$ sudo su # 切换至 root
     
@@ -32,14 +34,15 @@ LinuxOne 将 Linux 与开放源码结合而成的“巨无霸”级服务器，�
     [root@myserver ~]$ tar -xzvf docker-17.05.0-ce-rhel7.3-20170523.tar.gz
     
     [root@myserver ~]$ cp docker-17.05.0-ce-rhel7.3-20170523/docker* /usr/bin/
-
+    
     #启动docker daemon
     [root@myserver ~]$ docker daemon -g /local/docker/lib &
     ```
 
 ### **2. 安装 docker-compose**
 
----------------
+---
+
 使用yum安装python-setuptools：
     ```
     [root@myserver ~]$ yum info python-setuptools
@@ -50,7 +53,7 @@ LinuxOne 将 Linux 与开放源码结合而成的“巨无霸”级服务器，�
     ```
     [root@myserver ~]$ pip install backports.ssl_match_hostname --upgrade --ignore-installed
     ```
-    
+
 最后，使用pip安装docker-compose：
 
     ```
@@ -58,15 +61,15 @@ LinuxOne 将 Linux 与开放源码结合而成的“巨无霸”级服务器，�
     [root@myserver ~]$ pip install docker-compose==1.13.0
     ```
 
-
-
 ### **3. 安装并运行 WebSphere Liberty**
---------------------------
+
+---
+
 先手动拉取websphere-liberty镜像到本地：
 
     ```
     [root@myserver ~]$ docker image pull s390x/websphere-liberty:webProfile7
-
+    
     webProfile7: Pulling from s390x/websphere-liberty
     a39cfce7a60d: Pull complete
     4e699efbddb6: Pull complete
@@ -102,14 +105,17 @@ LinuxOne 将 Linux 与开放源码结合而成的“巨无霸”级服务器，�
     [root@myserver ~]$ docker ps
     CONTAINER ID    IMAGE    COMMAND    CREATED    STATUS    PORTS    NAMES
     3c9d3b02de11    s390x/websphere-liberty:webProfile7    "/opt/ibm/helpers/..."    21 seconds ago    Up 19 seconds    0.0.0.0:80->9080/tcp, 0.0.0.0:443->9443/tcp    mystifying_golick
-
+    
     ```
+
 浏览器访问http://[LinuxOne Host IP]，即可看到WebSphere Liberty的界面：
 
 ![](https://qiniu.abelsu7.cn/notes-2019517-websphereliberty.png)
 
 ### **4. 安装并运行 WordPress**
------------------------------------------------
+
+---
+
 参见 [运行并安装WordPress](https://github.com/IBM/Scalable-WordPress-deployment-on-Kubernetes/blob/master/docs/deploy-with-docker-on-linuxone.md#steps)
 
 创建并编辑docker-compose.yml：
@@ -118,7 +124,7 @@ LinuxOne 将 Linux 与开放源码结合而成的“巨无霸”级服务器，�
     [root@myserver ~]$ vim docker-compose.yml
     
     按i进入编辑模式（所有 Vim 命令注意区分大小写），输入以下内容：
-
+    
     version: '2'
     
     services:
@@ -146,8 +152,9 @@ LinuxOne 将 Linux 与开放源码结合而成的“巨无霸”级服务器，�
     [root@myserver ~]$ cd wordpress/
     [root@myserver wordpress]$ ls
     docker-compose.yml
-
+    
     ```
+
 根据docker-compose.yml中定义的服务启动容器：
 
     `[root@myserver wordpress]$ docker-compose up -d
@@ -160,14 +167,17 @@ LinuxOne 将 Linux 与开放源码结合而成的“巨无霸”级服务器，�
     -------------------------------------------------------------------------------------
     wordpress_mysql_1       /docker-entrypoint.sh mysq ...   Up      3306/tcp
     wordpress_wordpress_1   docker-entrypoint.sh apach ...   Up      0.0.0.0:8080->80/tcp
-
+    
     ```
+
 浏览器访问http://[Your LinuxONE IP Address]:8080，即可看到 WordPress 的页面：
 
 ![](https://github.com/IBM/Scalable-WordPress-deployment-on-Kubernetes/raw/master/images/wpinstall-language.png)
 
 ### **5. MEAN Stack 环境准备**
---------------------------
+
+---
+
 拉取代码到本地使用
 
     ```
@@ -178,7 +188,7 @@ LinuxOne 将 Linux 与开放源码结合而成的“巨无霸”级服务器，�
     [root@myserver ~]$ yum install -y tree
     
     [root@myserver ~]$ tree mean-docker
-
+    
     ```
 
 docker-compose.yml修改如下：
@@ -204,12 +214,14 @@ express-server/Dockerfile修改如下：
     ```
 
 ### **6. 启动 MEAN Stack**
-----------------
+
+---
+
 在mean-docker目录下运行docker-compose up：
 
     ```
     [root@myserver mean-docker]$ docker-compose up
-
+    
     Starting meandocker_database_1 ...
     Starting meandocker_database_1 ... done
     Starting meandocker_express_1 ...
@@ -224,12 +236,10 @@ express-server/Dockerfile修改如下：
     
     ```
 
-
  使用docker-compose -d即可在后台运行express-server
 
- 
  浏览器访问http://[ip of machine]:8081，即可看到你的App
- 
+
 使用docker-compose ps命令查看启动的容器：
 
     ```
@@ -239,11 +249,13 @@ express-server/Dockerfile修改如下：
     meandocker_database_1   /bin/sh -c mongod --dbpath ...   Up      0.0.0.0:27017->27017/tcp, 28017/tcp
     meandocker_express_1    npm start                        Up      0.0.0.0:8081->8081/tcp
     ```
----------------------------------------------------------
+
+---
 
 ## 项目设计文档
 
 ### **前端页面**
+
 * 银行首页
 * 登陆页面 
 * 存钱页面
@@ -278,59 +290,65 @@ express-server/Dockerfile修改如下：
     b. 转账：获取数据，查找是否有相应目标用户，若有，更新两人余额
 ```
 
-
 ### **数据库设计**
-   
+
 #### 用户信息表
-|account|password|balance|
-|:---:|:---:|:---:|
-|root | root | 8888888888888 |
-|123 | 123 | 10000 |
-|123456 | 123456| 50000|
+
+| account | password | balance       |
+|:-------:|:--------:|:-------------:|
+| root    | root     | 8888888888888 |
+| 123     | 123      | 10000         |
+| 123456  | 123456   | 50000         |
 
 #### 存取记录表
-|account|amount|balance| type|
-|:---:|:---:|:---:|:---:|
-| 123 | 5000 | 15000 |存入|
 
+| account | amount | balance | type |
+|:-------:|:------:|:-------:|:----:|
+| 123     | 5000   | 15000   | 存入   |
 
 #### 转账记录表
-| source_account | target_account | amount
-|:---:|:---:|:---:|
-|123 | 123456 | 100 |
 
--------
+| source_account | target_account | amount |
+|:--------------:|:--------------:|:------:|
+| 123            | 123456         | 100    |
+
+---
 
 ## Application使用说明
 
- * 1. 注册
- * 2. 登录
- * 3. 存款
- * 4. 取款
- * 5. 转账
+* 1. 注册
+* 2. 登录
+* 3. 存款
+* 4. 取款
+* 5. 转账
+  
+  ### **注册**
 
- ### **注册**
-------
+---
 
 点击注册按钮，输入 account 和 password，点击下方的注册按钮
 
 ### **登录**
-------
+
+---
 
 输入 account 和 password，点击确认按钮
 此时界面会显示你的账户名和余额，以及系统提供的基本服务选项，图：
 
 ### **存款**
-------
+
+---
 
 输入你想要存储的金额，点击确认按钮
 
 ### **取款**
-------
+
+---
 
 输入你想要取出的金额，点击确认按钮
 
 ### **转账**
-------
+
+---
 
 输入转账目标账户和转账金额，点击确认按钮
